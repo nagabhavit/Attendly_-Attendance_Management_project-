@@ -6,6 +6,8 @@ import StatCard from '../components/StatCard';
 import SubjectCard from '../components/SubjectCard';
 import AddSubjectModal from '../components/AddSubjectModal';
 import AttendanceCharts from '../components/AttendanceCharts';
+import AlertBanner from '../components/AlertBanner';
+import useLowAttendanceAlerts from '../hooks/useLowAttendanceAlerts';
 
 export default function Dashboard() {
   const { user, updateTarget } = useAuth();
@@ -43,7 +45,9 @@ export default function Dashboard() {
   };
 
   const overall = overallStats(subjects, target);
-  const lowCount = subjects.filter((s) => s.isLow).length;
+  const lowSubjects = subjects.filter((s) => s.isLow);
+  const lowCount = lowSubjects.length;
+  const { permission, requestPermission } = useLowAttendanceAlerts(subjects, target);
 
   if (loading) return <div className="center muted">Loading your attendance…</div>;
 
@@ -66,6 +70,13 @@ export default function Dashboard() {
       </section>
 
       {error && <p className="error">{error}</p>}
+
+      <AlertBanner
+        lowSubjects={lowSubjects}
+        target={target}
+        permission={permission}
+        onEnableNotifications={requestPermission}
+      />
 
       <section className="stats-grid">
         <StatCard icon="📈" label="Overall attendance" value={`${overall.percentage}%`} hint={`Target ${target}%`} />
