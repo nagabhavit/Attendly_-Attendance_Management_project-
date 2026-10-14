@@ -5,6 +5,7 @@ import { overallStats, todayISO } from '../utils/stats';
 import StatCard from '../components/StatCard';
 import SubjectCard from '../components/SubjectCard';
 import AddSubjectModal from '../components/AddSubjectModal';
+import AttendanceCharts from '../components/AttendanceCharts';
 
 export default function Dashboard() {
   const { user, updateTarget } = useAuth();
@@ -85,6 +86,13 @@ export default function Dashboard() {
             <SubjectCard key={s.id} subject={s} target={target} onMark={mark} todayStatus={today[s.id]} />
           ))}
         </section>
+      )}
+
+      {overall.total > 0 && (
+        <>
+          <h2 className="section-title">Insights</h2>
+          <AttendanceCharts subjects={subjects} overall={overall} target={target} />
+        </>
       )}
 
       {showAdd && <AddSubjectModal onClose={() => setShowAdd(false)} onSave={addSubject} />}
