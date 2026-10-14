@@ -120,3 +120,41 @@ input[type='color'] { padding: 2px; height: 42px; width: 64px; }
   .auth-hero ul { display: none; }
   .hide-sm { display: none; }
 }
+
+/* ---------- dashboard ---------- */
+.page-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; margin: 8px 0 24px; }
+.page-head h1 { margin: 0 0 4px; font-size: 2rem; }
+.head-actions { display: flex; align-items: center; gap: 12px; }
+.target-select { display: flex; align-items: center; gap: 8px; }
+.section-title { font-size: 1.15rem; margin: 32px 0 14px; }
+
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.stat-card { display: flex; gap: 14px; align-items: center; }
+.stat-card p { margin: 0; }
+.stat-icon { font-size: 1.6rem; width: 48px; height: 48px; display: grid; place-items: center; border-radius: 12px; background: rgba(99, 102, 241, .14); }
+.stat-value { font-size: 1.6rem; font-weight: 800; }
+
+.subjects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.subject-card { position: relative; overflow: hidden; display: grid; gap: 16px; }
+.subject-card::before { content: ''; position: absolute; inset: 0 0 auto 0; height: 4px; background: var(--accent); }
+.subject-head { display: flex; justify-content: space-between; align-items: flex-start; }
+.subject-head p { margin: 2px 0 0; }
+.subject-name { font-weight: 700; font-size: 1.05rem; }
+.subject-name:hover { color: #a5b4fc; }
+.subject-body { display: flex; align-items: center; gap: 18px; }
+.subject-meta p { margin: 0 0 6px; }
+.subject-actions { display: flex; gap: 8px; }
+.subject-actions .btn { flex: 1; }
+.btn.active { outline: 2px solid currentColor; outline-offset: 1px; }
+.empty { text-align: center; padding: 40px; }
+
+/* ---------- modal ---------- */
+.modal-backdrop { position: fixed; inset: 0; background: rgba(0, 0, 0, .55); display: grid; place-items: center; z-index: 50; padding: 16px; }
+.modal { width: min(440px, 100%); background: var(--bg-soft); }
+.modal h3 { margin: 0; }
+.row-end { display: flex; justify-content: flex-end; gap: 8px; }
+.swatches { display: flex; gap: 8px; }
+.swatch { width: 30px; height: 30px; border-radius: 50%; border: 2px solid transparent; cursor: pointer; }
+.swatch.selected { border-color: #fff; }
+
+@media (max-width: 900px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
