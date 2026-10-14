@@ -4,6 +4,7 @@ const config = require('./config');
 const { notFound, errorHandler } = require('./middleware/errorHandler');
 const authRoutes = require('./routes/auth');
 const subjectRoutes = require('./routes/subjects');
+const attendanceRoutes = require('./routes/attendance');
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.get('/api/health', (req, res) => {
 
 app.use('/api/auth', authRoutes);
 app.use('/api/subjects', subjectRoutes);
+app.use('/api/attendance', attendanceRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
